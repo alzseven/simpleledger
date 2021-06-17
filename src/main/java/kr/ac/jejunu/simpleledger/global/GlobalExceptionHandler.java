@@ -1,11 +1,7 @@
 package kr.ac.jejunu.simpleledger.global;
 
-import kr.ac.jejunu.simpleledger.security.exception.CustomAuthenticationException;
-import kr.ac.jejunu.simpleledger.user.exception.ExistingEmailException;
-import kr.ac.jejunu.simpleledger.user.exception.ExistingUserNameException;
-import kr.ac.jejunu.simpleledger.user.exception.LoginFailedException;
-import kr.ac.jejunu.simpleledger.user.exception.SignUpFailedException;
-import org.springframework.http.HttpStatus;
+import kr.ac.jejunu.simpleledger.transaction.exception.*;
+import kr.ac.jejunu.simpleledger.user.exception.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -30,8 +26,36 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ExistingEmailException.class)
-    protected ResponseEntity<?> handleExistingEmailException(ExistingEmailException e){
+    protected ResponseEntity<?> handleExistingEmailException(ExistingEmailException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
+
+    // Transaction
+    @ExceptionHandler(TransactionNotFoundException.class)
+    protected ResponseEntity<?> handleTransactionNotFoundException(TransactionNotFoundException e) {
+        return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    protected ResponseEntity<?> handleUserNotFoundException(UserNotFoundException e) {
+        return ResponseEntity.notFound().build();
+    }
+
+    // TODO:
+    @ExceptionHandler(CreateTransactionFailedException.class)
+    protected ResponseEntity<?> handleCreateTransactionFailedException(CreateTransactionFailedException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(DeleteTransactionFailedException.class)
+    protected ResponseEntity<?> handleDeleteTransactionFailedException(DeleteTransactionFailedException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(UpdateTransactionFailedException.class)
+    protected ResponseEntity<?> handleUpdateTransactionFailedException(UpdateTransactionFailedException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
 
 }

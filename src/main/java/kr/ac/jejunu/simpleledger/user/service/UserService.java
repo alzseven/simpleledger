@@ -16,4 +16,5 @@ public interface UserService {
     Optional<User> signUp(SignupDto signupDto) throws ExistingEmailException, ExistingUserNameException, NoSuchAlgorithmException;
     Optional<User> login(LoginDto loginDto) throws LoginFailedException, NoSuchAlgorithmException;
     AuthToken<Claims> createAuthToken(User user);
+    Optional<User> findUserByUsername(String username);
 }

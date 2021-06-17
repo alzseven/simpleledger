@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService {
         Date expiredDate = Date.from(LocalDateTime.now().plusMinutes(LOGIN_RETENTION_MINUTES).atZone(ZoneId.systemDefault()).toInstant());
         return jwtAuthTokenProvider.createAuthToken(user.getUsername(), expiredDate);
     }
+
+    @Override
+    public Optional<User> findUserByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
 }

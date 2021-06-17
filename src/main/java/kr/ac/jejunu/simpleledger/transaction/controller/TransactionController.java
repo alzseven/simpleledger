@@ -24,7 +24,7 @@ public class TransactionController {
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createTransaction(@RequestHeader("Bearer") String token ,@RequestBody SimpleTransactionDto createTransactionDto)
+    public ResponseEntity<?> createTransaction(@RequestHeader("Bearer") String token,@RequestBody SimpleTransactionDto createTransactionDto)
             throws CreateTransactionFailedException, UserNotFoundException {
         Optional<User> user = userService.findUserByUsername(jwtAuthTokenProvider.getUsernameFromToken(token));
         if (user.isPresent()) {
@@ -58,8 +58,8 @@ public class TransactionController {
         }
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> updateTransaction(@RequestParam(name = "id") Integer id, @ModelAttribute SimpleTransactionDto simpleTransactionDto)
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateTransaction(@PathVariable(name = "id") Integer id, @RequestBody SimpleTransactionDto simpleTransactionDto)
             throws UpdateTransactionFailedException, TransactionNotFoundException {
         final Optional<SimpleTransaction> transaction = simpleTransactionService.updateTransaction(id, simpleTransactionDto);
         if (transaction.isPresent()) {
@@ -69,8 +69,8 @@ public class TransactionController {
         }
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteTransaction(@RequestParam(name = "id") Integer id)
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteTransaction(@PathVariable(name = "id") Integer id)
             throws DeleteTransactionFailedException {
         try{
             simpleTransactionService.deleteTransaction(id);

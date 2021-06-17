@@ -1,6 +1,15 @@
 spring:
   datasource:
-    username: jeju
-    password: jejupw
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/jeju?characterEncoding=utf-8&serverTimezone=UTC
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER}
+    url: ${DB_URL}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+app:
+  jwt:
+    secret : ${JWT_SECRET}
+    expirationtime : ${JWT_EXPIRATIONTIME}

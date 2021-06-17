@@ -1,4 +1,4 @@
-package kr.ac.jejunu.simpleledger.transaction.exception;
+package kr.ac.jejunu.simpleledger.user.exception;
 
 public class UserNotFoundException extends Exception {
     public UserNotFoundException() {

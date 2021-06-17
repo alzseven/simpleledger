@@ -5,6 +5,7 @@ import kr.ac.jejunu.simpleledger.transaction.dto.SimpleTransactionDto;
 import kr.ac.jejunu.simpleledger.transaction.exception.*;
 import kr.ac.jejunu.simpleledger.transaction.model.SimpleTransaction;
 import kr.ac.jejunu.simpleledger.transaction.service.SimpleTransactionService;
+import kr.ac.jejunu.simpleledger.user.exception.UserNotFoundException;
 import kr.ac.jejunu.simpleledger.user.model.User;
 import kr.ac.jejunu.simpleledger.user.service.UserService;
 import lombok.RequiredArgsConstructor;
